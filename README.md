@@ -1,6 +1,7 @@
 # Contagious
 
-<img src="contagious.png" alt="Image Description" width="300" height="300">
+<img src="contagious.png" alt="Interface" width="300" height="300"><img src="contagious-gameplay.png" alt="Gameplay" width="300" height="300">
+
 
 "Contagious" is a strategic multiplayer game built with Pygame where players spread their diseases (bacteria/virus) across a grid to dominate the game board. The game involves careful planning and strategic placement of diseases to cause chain reactions and overwhelm opponents.
 
