@@ -14,7 +14,7 @@
 1. **Clone the repository**:
    ```sh
    git clone https://github.com/Luxanna22/pygame-contagious.git
-   cd contagious
+   cd pygame-contagious
 
 2. **Install Pygame**:
    ```sh
