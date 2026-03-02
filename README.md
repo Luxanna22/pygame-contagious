@@ -2,10 +2,10 @@
 
 <img src="contagious.png" alt="Interface" width="300" height="300"><img src="contagious-gameplay.png" alt="Gameplay" width="300" height="300">
 
-
 "Contagious" is a strategic multiplayer game built with Pygame where players spread their diseases (bacteria/virus) across a grid to dominate the game board. The game involves careful planning and strategic placement of diseases to cause chain reactions and overwhelm opponents.
 
 ## Features
+
 - **Multiplayer Gameplay**: Supports 2 to 4 players.
 - **Interactive Grid System**: Cells overflow and cause chain reactions when filled with diseases.
 - **Dynamic Visuals and Animations**: Engaging animations for disease placement and overflow.
@@ -14,20 +14,36 @@
 - **Replay Options**: Restart the game or return to the main menu after a win.
 
 ## Installation
+
 1. **Clone the repository**:
+
    ```sh
    git clone https://github.com/Luxanna22/pygame-contagious.git
    cd pygame-contagious
 
+   ```
+
 2. **Install Pygame**:
+
    ```sh
    pip install pygame
 
-2. **Run**:
+   ```
+
+3. **Run**:
+
    ```sh
    python main.py
+   ```
+
+   or
+
+   ```sh
+   python -m contagious.main
+   ```
 
 ## How to Play
+
 1. **Start the Game**: Run the game script to launch the main menu.
 2. **Select Players**: Choose the number of players (2-4) from the main menu.
 3. **Gameplay**:
@@ -37,11 +53,16 @@
 4. **Win Condition**: The game ends when only one player remains with diseases on the grid.
 
 ## Controls
+
 - **Mouse Click**: Place diseases in grid cells.
 - **Q Key**: Quit the game.
 - **Spacebar**: Restart the game after a win.
 - **Escape**: Return to the main menu.
 
 ## Credits
+
 Developed by J. Rusiana © 2024
 
+This game is inspired by the classic game "Chain Reaction"; thanks to its mechanics and design for the inspiration.
+
+This project was originally developed as a school final activity / course requirement.
