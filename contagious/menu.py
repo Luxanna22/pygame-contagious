@@ -12,12 +12,12 @@ run_menu() -> tuple[int, int, list[int]]
 from __future__ import annotations
 
 import random
-import sys
+import asyncio
 from math import cos, sin, radians
 
 import pygame
 
-from constants import (
+from .constants import (
     display,
     WIDTH, HEIGHT,
     WHITE,
@@ -316,7 +316,7 @@ def _draw_board(
 
 # ── Public entry point ────────────────────────────────────────────────────────
 
-def run_menu() -> tuple[int, int, list[int]]:
+async def run_menu() -> tuple[int, int, list[int]] | None:
     """
     Four-screen flow: Main → Players → Colors → Board size.
 
@@ -353,15 +353,13 @@ def run_menu() -> tuple[int, int, list[int]]:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                return None
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 if state > MAIN:
                     state -= 1
                 else:
-                    pygame.quit()
-                    sys.exit()
+                    return None
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if state == MAIN:
@@ -406,3 +404,4 @@ def run_menu() -> tuple[int, int, list[int]]:
 
         pygame.display.update()
         mk.tick(60)
+        await asyncio.sleep(0)

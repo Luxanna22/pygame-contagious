@@ -12,22 +12,22 @@ game_loop(num_players, block_size, chosen_color_indices)
 """
 from __future__ import annotations
 
-import sys
+import asyncio
 
 import pygame
 
-from assets import pop_sound, base_player_imgs, build_player_imgs_for_indices
-from board import Board
-from constants import (
+from .assets import pop_sound, base_player_imgs, build_player_imgs_for_indices
+from .board import Board
+from .constants import (
     clock,
     WIDTH, HEIGHT,
     PLAYER_COLORS, BORDER,
     ANIM_FPS,
 )
-from effects import ChainDisplay, Particle, Shockwave
-from menu import run_menu
-from renderer import render_frame
-from state import GameState
+from .effects import ChainDisplay, Particle, Shockwave
+from .menu import run_menu
+from .renderer import render_frame
+from .state import GameState
 
 
 # ── State factory ─────────────────────────────────────────────────────────────
@@ -230,15 +230,14 @@ def _check_win(state: GameState) -> None:
 
 # ── Main game loop ────────────────────────────────────────────────────────────
 
-def game_loop(
+async def game_loop(
     num_players: int,
     block_size: int = 40,
     chosen_color_indices: list[int] | None = None,
-) -> None:
+) -> tuple[int, int, list[int]] | str | None:
     """
-    Run one complete game session.  Calls itself recursively on restart, or
-    re-runs the menu on ESC.  Returns only when the player quits to menu and
-    that menu returns (control handed back to ``main``).
+    Run one complete async game session. Return a configuration to restart,
+    ``"menu"`` to return to the menu, or ``None`` to quit.
     """
     if chosen_color_indices is None:
         chosen_color_indices = list(range(num_players))
@@ -249,26 +248,21 @@ def game_loop(
         # ── Input ─────────────────────────────────────────────────────────────
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                return None
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
-                    pygame.quit()
-                    sys.exit()
+                    return None
 
                 if state.game_over_winner >= 0:
                     if event.key == pygame.K_SPACE:
-                        game_loop(
+                        return (
                             state.num_players,
                             state.last_block_size,
                             state.last_color_indices,
                         )
-                        return
                     if event.key == pygame.K_ESCAPE:
-                        n, bs, cc = run_menu()
-                        game_loop(n, bs, cc)
-                        return
+                        return "menu"
 
             if (
                 event.type == pygame.MOUSEBUTTONDOWN
@@ -301,3 +295,4 @@ def game_loop(
         # ── Render ────────────────────────────────────────────────────────────
         render_frame(state)
         clock.tick(ANIM_FPS)
+        await asyncio.sleep(0)

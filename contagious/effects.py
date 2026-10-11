@@ -14,7 +14,7 @@ from math import sin, cos, pi, radians
 
 import pygame
 
-from constants import WHITE, PARTICLE_DUR, chain_font
+from .constants import WHITE, PARTICLE_DUR, chain_font
 
 
 # ── Particle ──────────────────────────────────────────────────────────────────

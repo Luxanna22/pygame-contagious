@@ -11,7 +11,7 @@ from math import cos, sin, radians, pi
 
 import pygame
 
-from constants import (
+from .constants import (
     display,
     WIDTH, HEIGHT,
     BACKGROUND, BORDER, WHITE,
@@ -19,7 +19,7 @@ from constants import (
     C_SEP, C_ACCENT, C_DIM, C_CARD_BG,
     title_font, label_font, small_font,
 )
-from state import GameState
+from .state import GameState
 
 
 # ── Grid lines ────────────────────────────────────────────────────────────────
