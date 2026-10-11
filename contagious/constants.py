@@ -4,10 +4,16 @@ constants.py
 Centralised configuration: window, colours, fonts, and tuning knobs.
 All other modules import from here — no game logic lives here.
 """
+import sys
+
 import pygame
 
 pygame.init()
-pygame.mixer.init()
+if sys.platform != "emscripten":
+    try:
+        pygame.mixer.init()
+    except pygame.error:
+        pass
 
 # ── Window ────────────────────────────────────────────────────────────────────
 WIDTH  = 600

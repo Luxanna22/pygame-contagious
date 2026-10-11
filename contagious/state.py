@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 
 import pygame
 
-from board import Board
+from .board import Board
 
 if TYPE_CHECKING:
     from effects import ChainDisplay, Particle, Shockwave

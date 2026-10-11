@@ -14,14 +14,25 @@ renderer.py    all Pygame drawing routines
 menu.py        menu screens and navigation
 game.py        game logic, chain-reaction simulation, game loop
 """
-from menu import run_menu
-from game import game_loop
+import asyncio
+
+import pygame
+
+from .game import game_loop
+from .menu import run_menu
 
 
-def main() -> None:
-    num_players, block_size, chosen_colors = run_menu()
-    game_loop(num_players, block_size, chosen_colors)
+async def main() -> None:
+    try:
+        selection = await run_menu()
+        while selection is not None:
+            result = await game_loop(*selection)
+            if result is None:
+                break
+            selection = await run_menu() if result == "menu" else result
+    finally:
+        pygame.quit()
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

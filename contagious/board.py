@@ -13,7 +13,7 @@ from __future__ import annotations
 import random
 from typing import TYPE_CHECKING
 
-from constants import BORDER
+from .constants import BORDER
 
 if TYPE_CHECKING:
     pass

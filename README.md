@@ -1,5 +1,8 @@
 # Contagious
 
+> **Play in your browser:** https://luxanna22.github.io/pygame-contagious/<br>
+> **Desktop source:** run the game locally using the instructions below.
+
 <p align="center">
 <img src="pygame-contagious.gif" alt="Interface" width="400" height="400">
 </p>
@@ -43,6 +46,14 @@
    ```sh
    python -m contagious.main
    ```
+
+## Browser build
+
+The browser version is built with [Pygbag](https://pygame-web.github.io/wiki/pygbag/) and published to GitHub Pages by the workflow in `.github/workflows/deploy-pages.yml`.
+
+To build it locally, install Pygbag and run `python -m pygbag --build .` from the repository root. The generated static site is placed in `build/web/`.
+
+The web build runs without sound because browser audio initialization is not reliable on every device. The desktop version continues to use the included sound effect.
 
 ## How to Play
 
