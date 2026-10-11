@@ -8,8 +8,13 @@ import sys
 
 import pygame
 
-pygame.init()
-if sys.platform != "emscripten":
+# Browser builds have no sound effects, so initialize only the modules they use.
+# pygame.init() also initializes the mixer, which can stall the Pygbag startup gate.
+if sys.platform == "emscripten":
+    pygame.display.init()
+    pygame.font.init()
+else:
+    pygame.init()
     try:
         pygame.mixer.init()
     except pygame.error:
@@ -37,7 +42,7 @@ COLOR_LABELS  = ["Red",    "Green",  "Purple", "Blue"]
 COLOR_NAMES   = ["RED",    "GREEN",  "PURPLE", "BLUE"]
 PLAYER_NAMES  = ["PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"]
 
-# ── Menu palette ──────────────────────────────────────────────────────────────
+# ── Menu palette ─────────────────────────────────────────────────────────────
 MENU_BG    = (14,  14,  26)
 C_ACCENT   = (72,  214, 188)
 C_DIM      = (90,  90,  115)
@@ -45,7 +50,7 @@ C_CARD_BG  = (26,  26,  44)
 C_CARD_HOV = (38,  38,  62)
 C_SEP      = (48,  48,  72)
 
-# ── Fonts ─────────────────────────────────────────────────────────────────────
+# ── Fonts ────────────────────────────────────────────────────────────────────
 font       = pygame.font.SysFont("Times New Roman", 30)
 chain_font = pygame.font.SysFont("Times New Roman", 42, bold=True)
 title_font = pygame.font.SysFont("Times New Roman", 56, bold=True)
