@@ -8,11 +8,10 @@ import sys
 
 import pygame
 
-# Browser builds have no sound effects, so initialize only the modules they use.
-# pygame.init() also initializes the mixer, which can stall the Pygbag startup gate.
+# Pygbag's pygame module needs pygame.init() before display is available.
+# The browser build uses --ume_block=0 to bypass the media startup gate.
 if sys.platform == "emscripten":
-    pygame.display.init()
-    pygame.font.init()
+    pygame.init()
 else:
     pygame.init()
     try:
@@ -42,7 +41,7 @@ COLOR_LABELS  = ["Red",    "Green",  "Purple", "Blue"]
 COLOR_NAMES   = ["RED",    "GREEN",  "PURPLE", "BLUE"]
 PLAYER_NAMES  = ["PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"]
 
-# ── Menu palette ─────────────────────────────────────────────────────────────
+# ── Menu palette ──────────────────────────────────────────────────────────────
 MENU_BG    = (14,  14,  26)
 C_ACCENT   = (72,  214, 188)
 C_DIM      = (90,  90,  115)
