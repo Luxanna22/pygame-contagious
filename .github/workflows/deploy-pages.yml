@@ -23,11 +23,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
       - name: Install Pygbag
         run: python -m pip install pygbag==0.9.3
       - name: Build browser package
-        run: python -m pygbag --ume_block=0 --build .
+        run: python -m pygbag --PYBUILD 3.12 --ume_block=0 --build .
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
